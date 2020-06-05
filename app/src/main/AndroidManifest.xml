@@ -18,14 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".mediastorepractice.MediaStoreActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".viewmodelpractice.ViewModelActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vp2practice.TabVp2Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
     </application>

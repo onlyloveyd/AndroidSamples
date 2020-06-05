@@ -9,6 +9,7 @@ import android.widget.SimpleAdapter
 import android.widget.Toast
 import cn.onlyloveyd.androidpractice.mediastorepractice.MediaStoreActivity
 import cn.onlyloveyd.androidpractice.viewmodelpractice.ViewModelActivity
+import cn.onlyloveyd.androidpractice.vp2practice.TabVp2Activity
 
 class MainActivity : ListActivity() {
 
@@ -33,6 +34,12 @@ class MainActivity : ListActivity() {
             mapOf(
                 "title" to "ViewModel",
                 "intent" to activityToIntent(ViewModelActivity::class.java.name)
+            )
+        )
+        data.add(
+            mapOf(
+                "title" to "ViewPager2",
+                "intent" to activityToIntent(TabVp2Activity::class.java.name)
             )
         )
         data.add(
