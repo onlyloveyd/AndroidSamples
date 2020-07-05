@@ -4,14 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 /**
- * Description
+ * Media Store
  *
  * @author yidong
  * @date 2020/6/4
  */
-class MediaStoreActivity:AppCompatActivity() {
+class MediaStoreActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 }

@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.Toast
-import cn.onlyloveyd.androidpractice.recyclerviewpractice.RvActivity
+import cn.onlyloveyd.androidpractice.retrofitcoroutine.RetrofitCoroutineActivity
 import cn.onlyloveyd.androidpractice.viewmodelpractice.ViewModelActivity
 import cn.onlyloveyd.androidpractice.vp2practice.TabVp2Activity
 
@@ -44,10 +44,12 @@ class MainActivity : ListActivity() {
         )
         data.add(
             mapOf(
-                "title" to "RecyclerView",
-                "intent" to activityToIntent(RvActivity::class.java.name)
+                "title" to "Retrofit Coroutine",
+                "intent" to activityToIntent(RetrofitCoroutineActivity::class.java.name)
             )
         )
+
+
         return data
     }
 

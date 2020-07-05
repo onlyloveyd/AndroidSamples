@@ -3,8 +3,8 @@ package cn.onlyloveyd.androidpractice.viewmodelpractice
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import cn.onlyloveyd.androidpractice.adapter.BindingViewHolder
 import cn.onlyloveyd.androidpractice.databinding.ItemBannerBinding
-import cn.onlyloveyd.androidpractice.recyclerviewpractice.BindingViewHolder
 
 /**
  * Binding 适配器

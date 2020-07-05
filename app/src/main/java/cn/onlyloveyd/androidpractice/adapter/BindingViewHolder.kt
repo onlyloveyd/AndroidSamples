@@ -1,4 +1,4 @@
-package cn.onlyloveyd.androidpractice.recyclerviewpractice
+package cn.onlyloveyd.androidpractice.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

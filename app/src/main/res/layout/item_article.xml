@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="cn.onlyloveyd.androidpractice.recyclerviewpractice.Article" />
+            type="cn.onlyloveyd.androidpractice.data.Article" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
