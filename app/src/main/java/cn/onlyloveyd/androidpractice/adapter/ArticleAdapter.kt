@@ -27,4 +27,8 @@ class ArticleAdapter(callback: DiffUtil.ItemCallback<Article>, val click: (Artic
             click(getItem(position))
         }
     }
+
+    override fun getItemCount(): Int {
+        return super.getItemCount() + 1
+    }
 }

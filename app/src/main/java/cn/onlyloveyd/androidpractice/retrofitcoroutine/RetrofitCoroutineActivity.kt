@@ -53,7 +53,7 @@ class RetrofitCoroutineActivity : AppCompatActivity() {
                 RequestStatus.SUCCESS -> {
                     mBinding.refresh.isRefreshing = false
                 }
-                RequestStatus.START -> {
+                RequestStatus.REFRESH -> {
                     mBinding.refresh.isRefreshing = true
                 }
                 else -> mBinding.refresh.isRefreshing = false

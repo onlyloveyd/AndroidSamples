@@ -7,7 +7,8 @@ package cn.onlyloveyd.androidpractice.retrofitcoroutine
  * @date 2020/7/5
  */
 enum class RequestStatus {
-    START,
+    REFRESH,
+    LOADING,
     SUCCESS,
-    FAILED
+    FAILED,
 }

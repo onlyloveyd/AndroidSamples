@@ -24,7 +24,7 @@ class RetrofitCoroutineViewModel : ViewModel() {
         if (isRefresh) {
             pageNum.value == 0
         }
-//        status.value = RequestStatus.START
+        status.value = RequestStatus.REFRESH
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
