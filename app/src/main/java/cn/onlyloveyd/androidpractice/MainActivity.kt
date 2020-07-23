@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.Toast
+import cn.onlyloveyd.androidpractice.paging.PagingActivity
 import cn.onlyloveyd.androidpractice.retrofitcoroutine.RetrofitCoroutineActivity
 import cn.onlyloveyd.androidpractice.viewmodelpractice.ViewModelActivity
 import cn.onlyloveyd.androidpractice.vp2practice.TabVp2Activity
@@ -46,6 +47,13 @@ class MainActivity : ListActivity() {
             mapOf(
                 "title" to "Retrofit Coroutine",
                 "intent" to activityToIntent(RetrofitCoroutineActivity::class.java.name)
+            )
+        )
+
+        data.add(
+            mapOf(
+                "title" to "Paging3",
+                "intent" to activityToIntent(PagingActivity::class.java.name)
             )
         )
 
