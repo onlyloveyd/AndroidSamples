@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
  * @author yidong
  * @date 2020/7/5
  */
-class Retrofitance() {
+class Retrofitance {
     private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -20,7 +20,7 @@ class Retrofitance() {
             .build()
     }
 
-    val retrofit: Retrofit by lazy {
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder().baseUrl("https://www.wanandroid.com/")
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())

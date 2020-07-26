@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.Toast
+import cn.onlyloveyd.androidpractice.motion.MotionActivity
 import cn.onlyloveyd.androidpractice.paging.PagingActivity
 import cn.onlyloveyd.androidpractice.retrofitcoroutine.RetrofitCoroutineActivity
 import cn.onlyloveyd.androidpractice.viewmodelpractice.ViewModelActivity
@@ -57,7 +58,12 @@ class MainActivity : ListActivity() {
             )
         )
 
-
+        data.add(
+            mapOf(
+                "title" to "Motion Layout",
+                "intent" to activityToIntent(MotionActivity::class.java.name)
+            )
+        )
         return data
     }
 
