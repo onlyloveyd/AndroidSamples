@@ -3,6 +3,8 @@ package cn.onlyloveyd.androidpractice.paging
 import androidx.paging.PagingSource
 import cn.onlyloveyd.androidpractice.data.Article
 import cn.onlyloveyd.androidpractice.retrofitcoroutine.Retrofitance
+import retrofit2.HttpException
+import java.io.IOException
 
 /**
  * 文章数据源
@@ -24,8 +26,12 @@ class ArticleDataSource : PagingSource<Int, Article>() {
                 //加载下一页的key 如果传null就说明到底了
                 nextKey = if (result.data.curPage == result.data.pageCount) null else page + 1
             )
-        } catch (e: Exception) {
-            LoadResult.Error(e)
+        } catch (e: IOException) {
+            // IOException for network failures.
+            return LoadResult.Error(e)
+        } catch (e: HttpException) {
+            // HttpException for any non-2xx HTTP status codes.
+            return LoadResult.Error(e)
         }
     }
 }
