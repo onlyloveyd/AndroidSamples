@@ -1,6 +1,7 @@
 package cn.onlyloveyd.androidpractice.paging
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import cn.onlyloveyd.androidpractice.databinding.ActivityPagingBinding
 import cn.onlyloveyd.androidpractice.extension.ActivityBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 /**
  * 分页显示文章Activity
@@ -29,24 +31,24 @@ class PagingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding.list.adapter = adapter.withLoadStateFooter(PostsLoadStateAdapter(adapter))
-        //获取数据并渲染UI
-        viewModel.getArticleData().observe(this, Observer {
-            lifecycleScope.launchWhenCreated {
-                adapter.submitData(it)
-            }
-        })
-        //监听刷新状态当刷新完成之后关闭刷新
-        lifecycleScope.launchWhenCreated {
-            @OptIn(ExperimentalCoroutinesApi::class)
-            adapter.loadStateFlow.collectLatest {
-                if (it.refresh !is LoadState.Loading) {
-                    mBinding.refresh.isRefreshing = false
-                }
+        mBinding.list.adapter = adapter.withLoadStateHeaderAndFooter(
+            ArticleLoadStateAdapter(adapter),
+            ArticleLoadStateAdapter(adapter)
+        )
+
+        lifecycleScope.launch {
+            viewModel.getArticleData().collectLatest { pagingData ->
+                adapter.submitData(pagingData)
             }
         }
-        mBinding.refresh.setOnRefreshListener {
-            adapter.refresh()
-        }
+
+//        adapter.addLoadStateListener { loadState ->
+//            Toast.makeText(
+//                this,
+//                "\uD83D\uDE28  $loadState",
+//                Toast.LENGTH_LONG
+//            ).show()
+//        }
+
     }
 }

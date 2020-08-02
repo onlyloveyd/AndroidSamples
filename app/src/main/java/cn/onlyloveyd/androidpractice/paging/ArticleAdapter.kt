@@ -15,7 +15,6 @@ import cn.onlyloveyd.androidpractice.databinding.ItemArticleBinding
  */
 class ArticleAdapter : PagingDataAdapter<Article, BindingViewHolder>(Article.DiffCallback) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
         val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BindingViewHolder(binding)

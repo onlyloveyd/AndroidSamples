@@ -22,9 +22,9 @@ class ArticleDataSource : PagingSource<Int, Article>() {
                 //需要加载的数据
                 data = result.data.data,
                 //如果可以往上加载更多就设置该参数，否则不设置
-                prevKey = null,
+                prevKey = if (result.data.curPage == result.data.pageCount) null else page + 1,
                 //加载下一页的key 如果传null就说明到底了
-                nextKey = if (result.data.curPage == result.data.pageCount) null else page + 1
+                nextKey = null
             )
         } catch (e: IOException) {
             // IOException for network failures.
