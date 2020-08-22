@@ -1,6 +1,8 @@
 package cn.onlyloveyd.androidpractice.data
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -31,6 +33,7 @@ data class Data<T>(
 )
 
 @JsonClass(generateAdapter = true)
+@Entity(tableName = "articles")
 data class Article(
     val apkLink: String,
     val audit: Int,
@@ -44,6 +47,7 @@ data class Article(
     val descMd: String,
     val envelopePic: String,
     val fresh: Boolean,
+    @PrimaryKey
     val id: Int,
     val link: String,
     val niceDate: String,
