@@ -16,6 +16,7 @@
 
 package cn.onlyloveyd.androidpractice.room
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -33,5 +34,8 @@ interface ArticleDao {
 
     @Query("DELETE FROM articles")
     suspend fun clearArticles()
+
+    @Query("SELECT * FROM articles")
+    fun getArticles(): PagingSource<Int, Article>
 }
 

@@ -15,6 +15,11 @@ import cn.onlyloveyd.androidpractice.databinding.FragmentFirstBinding
  * create an instance of this fragment.
  */
 class FirstFragment : Fragment() {
+
+    companion object {
+        fun newInstance() = FirstFragment()
+    }
+
     private lateinit var mBinding: FragmentFirstBinding
     private val viewModel: Vp2ViewModel by activityViewModels()
     override fun onCreateView(
@@ -30,10 +35,5 @@ class FirstFragment : Fragment() {
             })
         }
         return mBinding.root
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = FirstFragment()
     }
 }

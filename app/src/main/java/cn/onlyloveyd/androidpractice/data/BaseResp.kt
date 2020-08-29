@@ -62,13 +62,15 @@ data class Article(
     val shareUser: String,
     val superChapterId: Int,
     val superChapterName: String,
-    val tags: List<Tag>,
+//    val tags: List<Tag>,
     val title: String,
     val type: Int,
     val userId: Int,
     val visible: Int,
     val zan: Int
 ) {
+    var pageIndex = 1
+
     companion object {
         val DiffCallback = object : DiffUtil.ItemCallback<Article>() {
             override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -81,9 +83,3 @@ data class Article(
         }
     }
 }
-
-@JsonClass(generateAdapter = true)
-data class Tag(
-    val name: String,
-    val url: String
-)

@@ -1,16 +1,15 @@
 package cn.onlyloveyd.androidpractice.paging
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
+import androidx.paging.ExperimentalPagingApi
 import cn.onlyloveyd.androidpractice.R
 import cn.onlyloveyd.androidpractice.databinding.ActivityPagingBinding
 import cn.onlyloveyd.androidpractice.extension.ActivityBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import cn.onlyloveyd.androidpractice.retrofitcoroutine.Retrofitance
+import cn.onlyloveyd.androidpractice.room.AppDatabase
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -20,7 +19,9 @@ import kotlinx.coroutines.launch
  * @author yidong
  * @date 2020/7/23
  */
+@ExperimentalPagingApi
 class PagingActivity : AppCompatActivity() {
+
 
     private val viewModel by viewModels<PagingViewModel>()
 
@@ -37,18 +38,12 @@ class PagingActivity : AppCompatActivity() {
         )
 
         lifecycleScope.launch {
-            viewModel.getArticleData().collectLatest { pagingData ->
+            viewModel.getArticleData(
+                Retrofitance.instance.wanAndroidApi,
+                AppDatabase.getInstance(this@PagingActivity)
+            ).collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
         }
-
-//        adapter.addLoadStateListener { loadState ->
-//            Toast.makeText(
-//                this,
-//                "\uD83D\uDE28  $loadState",
-//                Toast.LENGTH_LONG
-//            ).show()
-//        }
-
     }
 }

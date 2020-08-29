@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import cn.onlyloveyd.androidpractice.R
 import cn.onlyloveyd.androidpractice.databinding.ActivityViewModelBinding
 
@@ -17,7 +16,7 @@ import cn.onlyloveyd.androidpractice.databinding.ActivityViewModelBinding
  * @date 2020/6/4
  */
 class ViewModelActivity : AppCompatActivity() {
-    private val viewModel: RefreshViewModel by viewModels()
+    private val viewModel: RefreshViewModel by viewModels { RefreshVMFactory() }
     private lateinit var mBinding: ActivityViewModelBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

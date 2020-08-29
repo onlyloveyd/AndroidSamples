@@ -7,12 +7,14 @@ import android.view.View
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.Toast
+import androidx.paging.ExperimentalPagingApi
 import cn.onlyloveyd.androidpractice.motion.MotionActivity
 import cn.onlyloveyd.androidpractice.paging.PagingActivity
 import cn.onlyloveyd.androidpractice.retrofitcoroutine.RetrofitCoroutineActivity
 import cn.onlyloveyd.androidpractice.viewmodelpractice.ViewModelActivity
 import cn.onlyloveyd.androidpractice.vp2practice.TabVp2Activity
 
+@ExperimentalPagingApi
 class MainActivity : ListActivity() {
 
     private lateinit var listAdapter: SimpleAdapter
