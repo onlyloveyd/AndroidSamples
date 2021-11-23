@@ -46,6 +46,18 @@
             android:name=".motion.MotionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".video.VideoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".result.ResultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".result.TargetActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

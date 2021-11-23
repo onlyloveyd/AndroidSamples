@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.paging.ExperimentalPagingApi
 import cn.onlyloveyd.androidpractice.motion.MotionActivity
 import cn.onlyloveyd.androidpractice.paging.PagingActivity
+import cn.onlyloveyd.androidpractice.result.ResultActivity
 import cn.onlyloveyd.androidpractice.retrofitcoroutine.RetrofitCoroutineActivity
+import cn.onlyloveyd.androidpractice.video.VideoActivity
 import cn.onlyloveyd.androidpractice.viewmodelpractice.ViewModelActivity
 import cn.onlyloveyd.androidpractice.vp2practice.TabVp2Activity
 
@@ -64,6 +66,20 @@ class MainActivity : ListActivity() {
             mapOf(
                 "title" to "Motion Layout",
                 "intent" to activityToIntent(MotionActivity::class.java.name)
+            )
+        )
+
+        data.add(
+            mapOf(
+                "title" to "直播/回放播放",
+                "intent" to activityToIntent(VideoActivity::class.java.name)
+            )
+        )
+
+        data.add(
+            mapOf(
+                "title" to "Result API",
+                "intent" to activityToIntent(ResultActivity::class.java.name)
             )
         )
         return data
