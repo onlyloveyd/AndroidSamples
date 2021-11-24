@@ -10,6 +10,10 @@ class ResultActivity : AppCompatActivity() {
         ActivityResultBinding.inflate(layoutInflater)
     }
 
+    private val mDialog by lazy {
+        ResultSampleDialog(this, activityResultRegistry)
+    }
+
     private val myActivityLauncher =
         registerForActivityResult(JumpActivityResultContract()) { result ->
             Toast.makeText(applicationContext, result, Toast.LENGTH_SHORT).show()
@@ -22,6 +26,11 @@ class ResultActivity : AppCompatActivity() {
 
         mBinding.btJump.setOnClickListener {
             myActivityLauncher.launch("Hello Target")
+        }
+        lifecycle.addObserver(mDialog)
+
+        mBinding.btDialog.setOnClickListener {
+            mDialog.show()
         }
     }
 

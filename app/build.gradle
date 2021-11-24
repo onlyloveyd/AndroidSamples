@@ -65,7 +65,7 @@ dependencies {
     implementation "androidx.room:room-runtime:2.3.0"
     implementation "androidx.room:room-ktx:2.3.0"
 
-    def paging_version = "3.0.0-beta03"
+    def paging_version = "3.0.0-alpha04"
     implementation "androidx.paging:paging-runtime:$paging_version"
 
     //完整版引入

@@ -14,6 +14,8 @@ class TargetActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(mBinding.root)
+
         val name = intent.getStringExtra("name")
         mBinding.etMessage.setText(name)
 
