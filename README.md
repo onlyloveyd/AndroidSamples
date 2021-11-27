@@ -1,1 +1,2 @@
-# LearningJetpack
+# Android Sample 
+on the way ……
