@@ -1,3 +1,5 @@
 include ':activity_result_api'
 rootProject.name = "AndroidPractice"
 include ':common'
+include ':coroutine'
+include ':package_visibility'
