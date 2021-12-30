@@ -3,3 +3,5 @@ rootProject.name = "AndroidPractice"
 include ':common'
 include ':coroutine'
 include ':package_visibility'
+include ':dialog_fragment_sample'
+include ':mavericks_sample'
