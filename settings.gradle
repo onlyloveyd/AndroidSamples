@@ -1,6 +1,7 @@
 include ':activity_result_api'
-rootProject.name = "AndroidPractice"
+rootProject.name = "AndroidSample"
 include ':common'
+include ':coroutine'
 include ':coroutine'
 include ':package_visibility'
 include ':dialog_fragment_sample'
