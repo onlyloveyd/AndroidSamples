@@ -45,7 +45,6 @@ class MainFragment : Fragment(R.layout.fragment_main), MavericksView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         mainViewModel.onAsync(
             MainState::request,
             deliveryMode = uniqueOnly(),
