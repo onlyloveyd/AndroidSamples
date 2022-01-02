@@ -9,5 +9,22 @@
         android:id="@+id/mainFragment"
         android:name="tech.kicky.mavericks.sample.MainFragment"
         android:label="Main Fragment"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/main_to_article_list"
+            app:destination="@id/articleListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="tech.kicky.mavericks.sample.articles.ArticleListFragment"
+        android:label="Article List Fragment"
+        tools:layout="@layout/fragment_article_list">
+        <argument
+            android:name="args"
+            android:defaultValue="@null"
+            app:argType="tech.kicky.mavericks.sample.articles.Args" />
+
+    </fragment>
 </navigation>

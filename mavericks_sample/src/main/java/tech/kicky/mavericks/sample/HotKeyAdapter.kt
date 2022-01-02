@@ -16,7 +16,8 @@ import tech.kicky.mavericks.sample.databinding.ItemHotKeyBinding
  */
 class BindViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 
-class HotKeyAdapter : ListAdapter<HotKey, BindViewHolder>(HashItemCallback()) {
+class HotKeyAdapter(val itemClick: (String) -> Unit) :
+    ListAdapter<HotKey, BindViewHolder>(HashItemCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindViewHolder {
         val binding = ItemHotKeyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BindViewHolder(binding)
@@ -25,6 +26,9 @@ class HotKeyAdapter : ListAdapter<HotKey, BindViewHolder>(HashItemCallback()) {
     override fun onBindViewHolder(holder: BindViewHolder, position: Int) {
         val binding = holder.binding as ItemHotKeyBinding
         binding.title.text = getItem(position).name
+        binding.root.setOnClickListener {
+            itemClick.invoke(getItem(position).name)
+        }
     }
 }
 

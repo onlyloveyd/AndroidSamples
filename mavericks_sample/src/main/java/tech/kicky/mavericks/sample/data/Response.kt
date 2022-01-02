@@ -18,3 +18,20 @@ data class HotKey(
     val order: String,
     val visible: String,
 )
+
+data class Pager<T>(
+    val curPage: Int,
+    val datas: List<T>,
+    val offset: Int,
+    val over: Boolean,
+    val pageCount: Int,
+    val size: Int,
+    val total: Int
+)
+
+data class Article(
+    val id: String,
+    val title: String,
+    val link: String,
+    val chapterName: String
+)
