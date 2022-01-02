@@ -37,7 +37,7 @@ class MainFragment : Fragment(R.layout.fragment_main), MavericksView {
     }
 
 
-    protected fun navigate(@IdRes id: Int, args: Serializable? = null) {
+    private fun navigate(@IdRes id: Int, args: Serializable? = null) {
         findNavController().navigate(
             id,
             Bundle().apply { putSerializable(Mavericks.KEY_ARG, args) })

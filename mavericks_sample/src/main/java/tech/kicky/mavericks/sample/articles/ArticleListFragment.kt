@@ -2,6 +2,7 @@ package tech.kicky.mavericks.sample.articles
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,6 +28,25 @@ class ArticleListFragment : Fragment(R.layout.fragment_article_list), MavericksV
 
     private val adapter by lazy {
         ArticleAdapter()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.onEach {
+            binding.refresh.isRefreshing = it.isRefresh
+            binding.tvMessage.apply {
+                visibility =
+                    if (it.isLoadMoreCompleted || it.isLoadMore) View.VISIBLE else View.GONE
+                text = if (it.isLoadMoreCompleted) "已全部加载" else "加载中"
+            }
+        }
+        viewModel.onAsync(
+            ArticleListState::request,
+            deliveryMode = uniqueOnly(),
+            onFail = {
+                Toast.makeText(context, "articles request failed.", Toast.LENGTH_SHORT).show()
+            }
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,14 +96,14 @@ class ArticleListFragment : Fragment(R.layout.fragment_article_list), MavericksV
         }
     }
 
-    override fun invalidate() {
-        withState(viewModel) {
-            binding.refresh.isRefreshing = it.isRefresh
-            adapter.submitList(it.articles)
-        }
-    }
-
     private fun findLastVisibleItemPosition(lastVisibleItems: IntArray): Int {
         return lastVisibleItems.maxOfOrNull { it } ?: lastVisibleItems[0]
+    }
+
+
+    override fun invalidate() {
+        withState(viewModel) {
+            adapter.submitList(it.articles)
+        }
     }
 }

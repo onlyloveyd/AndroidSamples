@@ -6,8 +6,8 @@ import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 
 
-class SimpleActivityResultContract : ActivityResultContract<String?, String?>() {
-    override fun createIntent(context: Context, input: String?): Intent {
+class SimpleActivityResultContract : ActivityResultContract<String, String?>() {
+    override fun createIntent(context: Context, input: String): Intent {
         return Intent(context, TargetActivity::class.java).apply {
             putExtra(EXTRA_IN, input)
         }
