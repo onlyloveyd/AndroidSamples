@@ -4,33 +4,36 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.airbnb.mvrx.MavericksView
-import com.airbnb.mvrx.fragmentViewModel
-import com.airbnb.mvrx.withState
 import tech.kicky.paging3.sample.R
 import tech.kicky.paging3.sample.RepoAdapter
 import tech.kicky.paging3.sample.databinding.FragmentReposBinding
 
-class RepoFragment : Fragment(R.layout.fragment_repos), MavericksView {
+class RepoFragment : Fragment(R.layout.fragment_repos) {
 
     private val binding: FragmentReposBinding by viewBinding()
-    private val viewModel: RepoViewModel by fragmentViewModel()
+    private val viewModel: RepoViewModel by viewModels()
     private val adapter by lazy {
         RepoAdapter()
     }
 
-
-    override fun invalidate() {
-        withState(viewModel) {
-//            adapter.submitData()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launchWhenStarted {
+            viewModel.getPagingData().collect {
+                adapter.submitData(it)
+            }
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding.recyclerView.adapter = adapter
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.adapter =
+            adapter.withLoadStateFooter(FooterAdapter { adapter.retry() })
         adapter.addLoadStateListener {
             when (it.refresh) {
                 is LoadState.NotLoading -> {
@@ -54,6 +57,4 @@ class RepoFragment : Fragment(R.layout.fragment_repos), MavericksView {
             }
         }
     }
-
-
 }

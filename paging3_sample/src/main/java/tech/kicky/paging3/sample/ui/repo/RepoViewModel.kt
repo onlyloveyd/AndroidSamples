@@ -1,22 +1,16 @@
 package tech.kicky.paging3.sample.ui.repo
 
-import com.airbnb.mvrx.MavericksViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import kotlinx.coroutines.flow.Flow
 import tech.kicky.paging3.sample.Repository
+import tech.kicky.paging3.sample.data.Repo
 
-class RepoViewModel(initState: RepoState) : MavericksViewModel<RepoState>(initState) {
+class RepoViewModel : ViewModel() {
 
-    init {
-        getPagingData()
+    fun getPagingData(): Flow<PagingData<Repo>> {
+        return Repository.getPagingData().cachedIn(viewModelScope)
     }
-
-    fun getPagingData() {
-//        return Repository.getPagingData().cachedIn(viewModelScope)
-        suspend {
-            Repository.getPagingData()
-        }.execute {
-            copy(repos, request)
-        }
-    }
-
-
 }
