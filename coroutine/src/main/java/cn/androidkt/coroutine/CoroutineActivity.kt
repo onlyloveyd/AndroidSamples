@@ -2,47 +2,46 @@ package cn.androidkt.coroutine
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 
 class CoroutineActivity : AppCompatActivity() {
+
+
+    val mainScope by lazy {
+        MainScope()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coroutine)
 
-        case1()
-//        case2()
+        mainScope.launch {
+
+        }
+
+        lifecycleScope.launch {
+
+        }
+
+        runBlocking {
+            coroutineScope {
+                delay(10000)
+                print("Scope 1")
+            }
+            coroutineScope {
+                delay(5000)
+                print("Scope 2")
+            }
+
+            coroutineScope {
+                delay(2000)
+                print("Scope 3")
+            }
+        }
     }
-}
 
-private fun case1() {
-    val scope = MainScope()
-    scope.launch(Job()) {
-        launch {
-            delay(2000L)
-            println("CancelJobActivity job1 finished")
-            scope.cancel()
+    suspend fun doWork() = coroutineScope {
 
-        }
-        launch {
-            delay(3000L)
-            println("CancelJobActivity job2 finished")
-        }
-    }
-}
-
-private fun case2() {
-    val scope = MainScope()
-    scope.launch {
-        launch {
-            delay(2000L)
-            println("CancelJobActivity job1 finished")
-            scope.cancel()
-
-        }
-        launch {
-            delay(3000L)
-            println("CancelJobActivity job2 finished")
-        }
     }
 }
