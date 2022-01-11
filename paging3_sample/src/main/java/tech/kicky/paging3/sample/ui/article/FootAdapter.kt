@@ -1,4 +1,4 @@
-package tech.kicky.paging3.sample.ui.repo
+package tech.kicky.paging3.sample.ui.article
 
 import android.view.LayoutInflater
 import android.view.View

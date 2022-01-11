@@ -2,17 +2,20 @@ package tech.kicky.paging3.sample
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import tech.kicky.paging3.sample.data.Repo
-import tech.kicky.paging3.sample.network.GitHubService
+import tech.kicky.paging3.sample.data.Article
+import tech.kicky.paging3.sample.network.WanAndroidService
 
-class RepoPagingSource(private val gitHubService: GitHubService) : PagingSource<Int, Repo>() {
+class ArticlePagingSource(
+    private val wanAndroidService: WanAndroidService
+) :
+    PagingSource<Int, Article>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Repo> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         return try {
             val page = params.key ?: 1 // set page 1 as default
             val pageSize = params.loadSize
-            val repoResponse = gitHubService.searchRepos(page, pageSize)
-            val repoItems = repoResponse.items
+            val repoResponse = wanAndroidService.searchRepos(page)
+            val repoItems = repoResponse.data.datas
             val prevKey = if (page > 1) page - 1 else null
             val nextKey = if (repoItems.isNotEmpty()) page + 1 else null
             LoadResult.Page(repoItems, prevKey, nextKey)
@@ -21,6 +24,6 @@ class RepoPagingSource(private val gitHubService: GitHubService) : PagingSource<
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Repo>): Int? = null
+    override fun getRefreshKey(state: PagingState<Int, Article>): Int? = null
 
 }

@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/repo_fragment"
-        android:name="tech.kicky.paging3.sample.ui.repo.RepoFragment"
+        android:name="tech.kicky.paging3.sample.ui.article.HomeFragment"
         android:label="repoFragment"
-        tools:layout="@layout/fragment_repos" />
+        tools:layout="@layout/fragment_home" />
 
 </navigation>
