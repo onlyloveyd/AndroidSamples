@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
     android:padding="10dp">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:src="@drawable/loading" />
+
+    <TextView
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:text="正在加载中"
+        android:textColor="#777777"
+        android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/retry_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Retry" />
-
-</FrameLayout>
+</LinearLayout>

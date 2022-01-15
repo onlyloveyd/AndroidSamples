@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import tech.kicky.paging3.sample.data.Article
 import tech.kicky.paging3.sample.data.Response
 import tech.kicky.paging3.sample.data.WanPager
@@ -14,7 +15,15 @@ import java.util.concurrent.TimeUnit
 interface WanAndroidService {
 
     @GET("article/list/{pageNum}/json")
-    suspend fun searchRepos(@Path("pageNum") page: Int): Response<WanPager<Article>>
+    suspend fun homeArticle(@Path("pageNum") page: Int): Response<WanPager<Article>>
+
+
+    @GET("article/list/{pageNum}/json")
+    suspend fun authorArticle(
+        @Path("pageNum") page: Int,
+        @Query("author") author: String
+    ): Response<WanPager<Article>>
+
 
     companion object {
         private const val BASE_URL = "https://www.wanandroid.com/"

@@ -20,5 +20,8 @@ data class Article(
     val id: String,
     val title: String,
     val link: String,
-    val chapterName: String
-)
+    val chapterName: String,
+    val publishTime: Long
+) {
+    var date = ""
+}

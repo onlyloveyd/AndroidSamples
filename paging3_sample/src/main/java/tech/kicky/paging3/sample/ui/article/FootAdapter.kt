@@ -1,40 +1,43 @@
 package tech.kicky.paging3.sample.ui.article
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
-import androidx.recyclerview.widget.RecyclerView
-import tech.kicky.paging3.sample.R
+import tech.kicky.common.adapter.BindingViewHolder
+import tech.kicky.paging3.sample.databinding.FooterItemBinding
 
 /**
  * 底部状态
  * author: yidong
  * 2022-01-10
  */
-class FooterAdapter(val retry: () -> Unit) : LoadStateAdapter<FooterAdapter.ViewHolder>() {
+class FooterAdapter(private val retry: () -> Unit) : LoadStateAdapter<BindingViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val progressBar: ProgressBar = itemView.findViewById(R.id.progress_bar)
-        val retryButton: Button = itemView.findViewById(R.id.retry_button)
+    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): BindingViewHolder {
+        val binding = FooterItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return BindingViewHolder(binding)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.footer_item, parent, false)
-        val holder = ViewHolder(view)
-        holder.retryButton.setOnClickListener {
-            retry()
+    override fun onBindViewHolder(holder: BindingViewHolder, loadState: LoadState) {
+        val binding = holder.binding as FooterItemBinding
+
+        binding.loading.isVisible = loadState is LoadState.Loading
+        binding.message.text = when (loadState) {
+            is LoadState.Loading -> "正在加载"
+            is LoadState.Error -> "点击重试"
+            is LoadState.NotLoading -> "已全部加载"
         }
-        return holder
+        binding.message.setOnClickListener {
+            if (loadState is LoadState.Error) {
+                retry.invoke()
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, loadState: LoadState) {
-        holder.progressBar.isVisible = loadState is LoadState.Loading
-        holder.retryButton.isVisible = loadState is LoadState.Error
+    override fun displayLoadStateAsItem(loadState: LoadState): Boolean {
+        return super.displayLoadStateAsItem(loadState)
+                || (loadState is LoadState.NotLoading && loadState.endOfPaginationReached)
     }
-
 }
