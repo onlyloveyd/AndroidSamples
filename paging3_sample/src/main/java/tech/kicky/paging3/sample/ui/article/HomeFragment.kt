@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tech.kicky.paging3.sample.R
@@ -27,7 +26,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.getPagingData().collect {
                 adapter.submitData(it)
             }
-
         }
 
         lifecycleScope.launch {
