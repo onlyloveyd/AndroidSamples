@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import org.libpag.PAGView
 
 class MainActivity : AppCompatActivity() {
-//    private val binding by viewBinding<ActivityMainBinding>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val pagView = PAGView(this)
+        pagView.path = "assets://like.pag"
+        setContentView(pagView)
 
-        val pag = PAGView(this).apply {
-            path = "assets://fans.pag"
-        }
-        setContentView(pag)
-        pag.play()
+        pagView.play()
+
     }
 }
